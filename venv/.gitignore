@@ -1,0 +1,110 @@
+# Archivos de cache y bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Optimizaciones de CPython
+*.pyo
+
+# Logs
+*.log
+
+# Archivos de distribución / empaquetado
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Archivos del instalador
+*.exe
+*.msi
+
+# Entorno virtual
+# ¡No subas tus dependencias a Git!
+venv/
+venv.bak/
+env/
+env.bak/
+.venv/
+.env/
+
+# Archivos de configuración de editores e IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias
+pip-wheel-metadata/
+
+# Archivos de configuración locales (si los tienes)
+# Es una buena práctica mantenerlos fuera del control de versiones
+# para evitar subir credenciales o configuraciones específicas de la máquina.
+# .env
+# config.ini
+
+# Bases de datos
+# Si usas una base de datos local para desarrollo, es mejor ignorarla.
+*.sqlite
+*.sqlite3
+
+# Cobertura de tests
+.coverage
+.coverage.*
+htmlcov/
+
+# Cache de pytest
+.pytest_cache/
+
+# Entornos de Tox
+.tox/
+
+# Sphinx docs
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Archivos de entorno de mypy
+.mypy_cache/
+
+### Python ###
+# C extensions
+*.so
+
+# CPython
+python-config.py
+
+# PyInstaller
+#  Usually these files are created by a CI server from a clean checkout of the git repo, but may be created locally
+*.manifest
+*.spec
+
+
+### Stack ###
+.stack-work/
+
+### Vagrant ###
+.vagrant/
+
+### Environments ###
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+### Files ###
+db.sqlite3
+db.sqlite3-journal
+
+
+### Celery ###
+celerybeat-schedule
+celerybeat.pid

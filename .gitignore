@@ -47,6 +47,17 @@ pip-wheel-metadata/
 # .env
 # config.ini
 
+# Ignorar base de datos
+*.db
+
+# Ignorar cachés de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar entorno virtual
+venv/
+
+
 # Bases de datos
 # Si usas una base de datos local para desarrollo, es mejor ignorarla.
 *.sqlite

@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from app.schemas.inventory import InventoryMovement, InventoryResponse
+from app.schemas.inventory import InventoryMovement
 from app.models.inventory import Inventory
 from app.models.product import Product
 from app.models.enums import MovementType

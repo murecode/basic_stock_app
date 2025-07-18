@@ -25,8 +25,11 @@ class InventoryMovement(InventoryBase):
 
 class InventoryResponse(InventoryBase):
   id: int
+  product_id: int
   movement_type: MovementType
   quantity: int
+  user_id: int
+  # current_stock: int
   movement_timestamp: datetime
 
   class Config:

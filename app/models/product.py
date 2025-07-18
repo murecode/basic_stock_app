@@ -16,7 +16,7 @@ class Product(Base):
   last_updated = Column(DateTime(timezone=True), server_default=func.now())
 
   # Relaciones
-  # inventory_movements = relationship("InventoryMovementent", back_populates="product")
+  inventory = relationship("Inventory", back_populates="product")
 
 
 

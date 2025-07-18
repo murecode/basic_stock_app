@@ -13,4 +13,4 @@ class User(Base):
   created_at = Column(DateTime(timezone=True), server_default=func.now())
 
   # Relaciones
-  # inventory_movements = relationship("InventoryMovement", back_populates="user")
+  inventory = relationship("Inventory", back_populates="user")

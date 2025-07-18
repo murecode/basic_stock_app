@@ -5,8 +5,8 @@ from sqlalchemy.sql import func
 from app.models.base import Base
 from app.models.enums import MovementType
 
-class InventoryMovement(Base):
-  __tablename__ = "inventory_movements"
+class Inventory(Base):
+  __tablename__ = "inventory"
   id = Column(Integer, primary_key=True, index=True)
   product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
   user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -15,5 +15,5 @@ class InventoryMovement(Base):
   movement_timestamp = Column(DateTime(timezone=True), server_default=func.now())
 
   # Relaciones
-  # user = relationship("User", back_populates="inventory_movements")
-  # product = relationship("Product", back_populates="inventory_movements")
+  user = relationship("User", back_populates="inventory")
+  product = relationship("Product", back_populates="inventory")

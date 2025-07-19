@@ -26,6 +26,13 @@ def create_product(product: product_schemas.ProductCreate, db: Session = Depends
     raise HTTPException(status_code=400, detail="Error al crear el producto")
   return db_product
 
+@router.put("/products/{product_id}", response_model=product_schemas.ProductResponse)
+def update_product(product_id: int, product: product_schemas.ProductUpdate, db: Session = Depends(get_db)):
+  db_product = product_crud.update_product(db=db, product_id=product_id, product=product)
+  if db_product is None:
+    raise HTTPException(status_code=404, detail="Producto no encontrado")
+  return db_product
+
 @router.delete("/products/{product_id}", response_model=product_schemas.ProductResponse)
 def delete_product(product_id: int, db: Session = Depends(get_db)):
   db_product = product_crud.delete_product(db=db, product_id=product_id)

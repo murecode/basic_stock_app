@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.models.user import User
 from app.schemas.user import UserCreate
-from app.utils.password import verify_password, hash_password
+from app.auth.password import verify_password, hash_password
 
 
 def get_user(db: Session, user_id: int):
@@ -30,15 +30,9 @@ def create_user(db: Session, user: UserCreate):
   return db_user
 
 
+# User Authentication
 def authenticate_user(db: Session, email: str, password: str):
-  user = db.query(User).filter(User.email == email).first()
-  if not user or not verify_password(password, user.password):
-    raise HTTPException(status_code=401, detail="Credenciales incorrectas")
-  return user
-
-
-# def get_user_by_email(db: Session, email: str):
-#   user = db.query(User).filter(User.email == email).first()
-#   if user is None:
-#     raise HTTPException(status_code=404, detail="Usuario no encontrado")
-#   return user
+    user = db.query(User).filter(User.email == email).first()
+    if not user or not verify_password(password, user.password):
+        return None
+    return user

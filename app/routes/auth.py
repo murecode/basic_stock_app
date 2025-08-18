@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.params import Form
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -12,7 +13,7 @@ router = APIRouter()
 
 
 @router.post("/register/")
-async def register(username: str, email: str, password: str, db: Session = Depends(get_db)):
+async def register(username: str = Form(...), email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.email == email).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Usuario ya registrado")
@@ -36,3 +37,5 @@ async def login(user: LoginUser, db: Session = Depends(get_db)):
         )
     access_token = create_access_token(data={"sub": authenticated_user.email})
     return {"access_token": access_token, "token_type": "bearer"}
+
+

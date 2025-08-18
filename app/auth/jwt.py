@@ -1,9 +1,12 @@
 from datetime import datetime, timedelta
 from typing import Optional
 import jwt
+from app.database import get_db
 from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from passlib.context import CryptContext
+
+from app.models.user import User
 
 
 # Configuración JWT
@@ -45,9 +48,13 @@ def verify_token(token: str):
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Token inválido")
 
+
 # Dependencia para verificar autenticación
 def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """Obtener usuario actual desde el token"""
-    token = credentials.credentials
-    email = verify_token(token)
-    return email
+  verify_token(credentials.credentials)
+  user = get_db.query(User).filter(User.email == user.email).first()
+  if user is None:
+    raise HTTPException(status_code=401, detail="Usuario no encontrado")
+  return user
+
+

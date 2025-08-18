@@ -5,6 +5,9 @@ from app.database import get_db
 import app.crud.product as product_crud
 import app.schemas.product as product_schemas
 
+from app.models.user import User
+from app.auth.jwt import get_current_user
+
 router = APIRouter()
 
 @router.get("/products/{product_id}", response_model=product_schemas.ProductResponse)
@@ -15,7 +18,7 @@ def read_product(product_id: int, db: Session = Depends(get_db)):
   return db_product
 
 @router.get("/products/", response_model=list[product_schemas.ProductResponse])
-def read_products(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_products(current_user: User = Depends(get_current_user), skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
   products = product_crud.get_products(db=db, skip=skip, limit=limit)
   return products
 
